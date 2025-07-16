@@ -24,10 +24,17 @@ async function retriveOriginalUrl(req,res){
     if(!originalUrl) return res.status(404).json({message: "No Url Found"})
     return res.status(201).json(originalUrl)
 }
-async function updateUrl(req,body) {
+async function updateUrl(req,res) {
     const shortCode = req.params.id
-    const result = url.findByIdAndUpdate(shortCode,req.body,{new: true})
+    const result =await url.findOneAndUpdate({shortCode},req.body,{new: true})
     if(!result) return res.status(404).json({message: "No Url Found"})
-        return res.status(201).json({...result,message: "Updated"})
+        console.log(result)
+     return res.status(201).json(result)
 }
-module.exports = {handleAddUrl,handleGetAll,retriveOriginalUrl,updateUrl}
+async function deleteUrl(req,res) {
+    const shortCode = req.params.id
+    const result =await url.findOneAndDelete({shortCode})
+    if(!result) return res.status(404).json({message: "No Url Found"})
+     return res.status(201).json({message: "Url Deleted"})
+}
+module.exports = {handleAddUrl,handleGetAll,retriveOriginalUrl,updateUrl,deleteUrl}
