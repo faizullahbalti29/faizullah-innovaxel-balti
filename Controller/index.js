@@ -1,5 +1,4 @@
 const url = require('../Modal')
-const url = require('../Modal')
 const shortid = require('shortid')
 async function handleAddUrl(req,res) {
     console.log(req.body)
@@ -19,9 +18,16 @@ async function handleGetAll(req,res) {
 } 
 
 async function retriveOriginalUrl(req,res){
-    const {shortUrl} = req.params.shortCode
-    const originalUrl = url.findOne({shortCode: shortUrl})
+    const shortUrl = req.params.id
+    console.log(shortUrl)
+    const originalUrl =await url.findOne({shortCode: shortUrl})
     if(!originalUrl) return res.status(404).json({message: "No Url Found"})
     return res.status(201).json(originalUrl)
 }
-module.exports = {handleAddUrl,handleGetAll,retriveOriginalUrl}
+async function updateUrl(req,body) {
+    const shortCode = req.params.id
+    const result = url.findByIdAndUpdate(shortCode,req.body,{new: true})
+    if(!result) return res.status(404).json({message: "No Url Found"})
+        return res.status(201).json({...result,message: "Updated"})
+}
+module.exports = {handleAddUrl,handleGetAll,retriveOriginalUrl,updateUrl}
