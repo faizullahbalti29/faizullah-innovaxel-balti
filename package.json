@@ -1,0 +1,24 @@
+{
+  "name": "faizullah-innovaxel-balti",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faizullahbalti29/faizullah-innovaxel-balti.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/faizullahbalti29/faizullah-innovaxel-balti/issues"
+  },
+  "homepage": "https://github.com/faizullahbalti29/faizullah-innovaxel-balti#readme",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.16.3"
+  }
+}
