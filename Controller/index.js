@@ -19,7 +19,7 @@ async function handleGetAll(req,res) {
 } 
 
 async function retriveOriginalUrl(req,res){
-    const {shortUrl} = req.body
+    const {shortUrl} = req.params.shortCode
     const originalUrl = url.findOne({shortCode: shortUrl})
     if(!originalUrl) return res.status(404).json({message: "No Url Found"})
     return res.status(201).json(originalUrl)
